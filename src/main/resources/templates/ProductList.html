@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Create New Product</title>
+</head>
+<body>
+	<a href="AddProduct.html">新增商品</a>
+
+	<table>
+		<tr>
+			<th>編號</th>
+			<th>商品</th>
+			<th>價格</th>
+			<th>庫存</th>
+			<th>數量</th>
+			<th></th>
+		</tr>
+		<tr th:each="product : ${products} " th:object="${product}">
+			<td th:text="*{id}"></td>
+			<td th:text="*{name}"></td>
+			<td th:text="*{price}"></td>
+			<td th:text="*{qty}"></td>			
+			<td><button type="button" onclick="subCounts()">-</button>
+				<button id="productCounts" value ="1">1</button>
+				<button type="button" onclick="addCounts(1)">+</button>
+			</td>
+			<td></td>
+			<td>
+				<a th:href="@{ProductUpdate(id=${product.id})}">修改</a> 
+				<a th:href="@{ProductDelete(id=${product.id})}">刪除</a>
+			</td>
+			<td>
+<!-- 				<a th:href="@{AddShoppingCar(id=${product.id})}">加入購物車</a> -->
+				<a th:href="@{AddShoppingCar(id=${product.id}, name=${product.name}, price=${product.price}, qty=${product.qty})}">加入購物車</a>
+			</td>
+			<!-- 		<td><input type="button" value="加入購物車" name="productId" onclick="@{AddShoppingCar(id=${product.id})}"></td> -->
+		</tr>
+	</table>
+	<a href="ShoppingCarList">購物清單</a>
+
+	<!-- <input type="button" value="結帳" name="productId" action="insertShoppingCart"> -->
+
+</body>
+</html>

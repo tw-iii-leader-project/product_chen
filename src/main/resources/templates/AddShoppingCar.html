@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>ShoppingCarList</title>
+</head>
+<body>
+
+<table>
+  <tr>
+  <th>編號</th>
+  <th>商品</th>
+  <th>價格</th>
+  <th>數量</th>
+  <th></th>
+ </tr>
+    <tr th:each="shoppingcar : ${shoppingcars} " th:object="${shoppingcar}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{name}"></td>
+        <td th:text="*{price}"></td>
+        <td th:text="*{qty}"></td>
+        <td> </td>
+		<td><a th:href="@{ShoppingCarDelete(id=${shoppingcar.id})}">刪除</a></td>        
+    </tr>
+</table>
+
+</body>
+</html>
